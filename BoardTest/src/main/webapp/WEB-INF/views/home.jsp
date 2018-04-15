@@ -11,8 +11,29 @@
 
 <P>  The time on the server is ${serverTime}. </P>
 
+<form role="form" method="post">
+	<div class="box-body">
+		<div class="form-group">
+			<label>title</label>
+			<input type="text" name="title" class="form-control">
+		</div>
+		<div class="form-group">
+			<label>content</label>
+			<textarea rows="3" cols="5" name="content" class="form-control"></textarea>
+		</div>
+	</div>
+	
+	<div class="box=footer">
+		<button type="submit" class="btn btn-primary">submit</button>
+	</div>
+	
+</form>
 
-<table>
+
+
+
+
+<%-- <table>
 	<tr>
 		<th>bno</th>
 		<th>title</th>
@@ -24,7 +45,7 @@
 		<th>${BoardVO.title}</th>
 		<th>${BoardVO.content}</th>
 	</tr>
-</table>
+</table> --%>
 
 
 </body>

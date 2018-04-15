@@ -1,9 +1,5 @@
 package com.board.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import javax.inject.Inject;
 
 import org.slf4j.Logger;
@@ -13,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.board.domain.BoardVO;
 import com.board.service.BoardService;
 
 /**
@@ -31,12 +28,24 @@ public class HomeController {
 	 */
 
 	@RequestMapping(value = "/creat", method = RequestMethod.GET)
-	public String create(Model model) {
+	public String createGet(BoardVO vo, Model model) throws Exception {
 		logger.info("create.....");
 
 		
 		return "home";
 	}
+	
+	@RequestMapping(value = "/creat", method = RequestMethod.POST)
+	public String createPost(BoardVO vo, Model model) throws Exception {
+		logger.info("create.....");
+
+		service.create(vo);
+		
+		return "success";
+	}
+	
+	
+	
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public String read(Model model) {

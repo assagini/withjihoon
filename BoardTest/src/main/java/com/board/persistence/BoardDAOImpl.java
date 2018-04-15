@@ -24,7 +24,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public BoardVO read(Integer bno) throws Exception{
-		return session.selectOne(namespace + ".read", bno);
+		return session.selectOne(namespace + ".read", bno);		//selectOne()메소드는 오직 하나의 데이터를 검색하는 SQL구문을 실행할 때 사용
 	}
 	
 	@Override
