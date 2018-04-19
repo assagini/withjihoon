@@ -1,17 +1,23 @@
 package com.board.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
 
 import com.board.domain.BoardVO;
 
-
-//vo작성 --> mapper작성 --> dao작성
+@Repository
 public class BoardDAOImpl implements BoardDAO {
 	
 	@Inject
 	private SqlSession session;			//session이 왜 필요한걸까?
+	
+	@Inject
+	private BoardDAO dao;
 	
 	private static String namespace = "com.board.mapper.boardMapper";		//mapper가보면 namespace라고 있음, 거기 써있는 거 쓰는 거임
 
@@ -23,17 +29,25 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
-	public BoardVO read(Integer bno) throws Exception{
-		return session.selectOne(namespace + ".read", bno);		//selectOne()메소드는 오직 하나의 데이터를 검색하는 SQL구문을 실행할 때 사용
+	public List<BoardVO> listAll() throws Exception {
+	    return session.selectList(namespace + ".listAll");
 	}
 	
 	@Override
-	public void update(BoardVO vo) throws Exception{
-		session.update(namespace + ".update", vo);
-	}
-	
-	@Override
-	public void delete(Integer bno) throws Exception{
-		session.delete(namespace + ".delete", bno);
+	public BoardVO read(Integer bno) throws Exception {
+	    return session.selectOne(namespace + ".read", bno);
 	}	
+	
+	
+	@Override
+	public void update(BoardVO vo) throws Exception {
+		System.out.println("3");
+	    session.update(namespace + ".update", vo);
+	}
+	
+	@Override
+	public void delete(Integer bno) throws Exception {
+	    session.delete(namespace + ".delete", bno);
+	}
+	
 }

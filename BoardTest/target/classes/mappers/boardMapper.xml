@@ -10,21 +10,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values (#{title}, #{content})
 	</insert>
 	
-	<select id="read">
+	
+	<select id="listAll" resultType="com.board.domain.BoardVO">
+ 		<![CDATA[
+ 		select bno, title, content
+ 		from board.jcboard 
+ 		where bno > 0 
+ 		order by bno desc
+ 		]]>
+	</select>
+
+
+	<select id="read" resultType="com.board.domain.BoardVO">
 		select bno, title, content
 		from board.jcboard
 		where bno = #{bno}
-	</select>
+	</select>	
 	
 	<update id="update">
-		update board.jcboard
-		set title = #{title}, content = #{content}
+		update board.jcboard 
+		set title =#{title}, content =#{content}
 		where bno = #{bno}
 	</update>
 	
 	<delete id="delete">
-		delete from board.jcboard
+		delete from board.jcboard 
 		where bno = #{bno}
-	</delete>
-	
+	</delete>	
+
 </mapper>
