@@ -33,8 +33,16 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) throws Exception {
+
+		return "redirect:/listAll";
+	}
+	
+	
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
+	public String write(Locale locale, Model model) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -85,7 +93,7 @@ public class HomeController {
 	}	
 	
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)		
-	public String modifyPOST(BoardVO vo, Model model) throws Exception {
+	public String modifyPOST(BoardVO vo) throws Exception {
 		System.out.println("1");
 		service.modify(vo);
 		System.out.println("4");
@@ -99,8 +107,5 @@ public class HomeController {
 
 	    return "redirect:/listAll";
 	  }	
-	
-	
-	
 	
 }
